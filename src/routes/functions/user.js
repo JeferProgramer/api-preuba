@@ -3,7 +3,6 @@ const {API_KEY} = process.env;
 const {Op} = require('sequelize');
 const {v4: uuidv4} = require('uuid');
 const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
 const {User} = require('../../db')
 async function getUserById(req, res)  {
     const idUser = req.params.id;
@@ -24,7 +23,7 @@ const login = async (req, res) => {
       console.log('estes es el usuario  ' + user)
 
       const passwordCorrect =
-        user === null ? false : await bcrypt.compare(password, user.password);
+        user === null ? false : password = user.password;
 
       if (!(user && passwordCorrect)) {
         res.status(401).json({
